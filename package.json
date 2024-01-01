@@ -1,0 +1,20 @@
+{
+  "name": "react-icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/create-react-app": "^2.0.1",
+    "@types/react": "^18.2.45",
+    "esbuild": "^0.19.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
