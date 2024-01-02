@@ -98,20 +98,16 @@ var Close = function() {
 };
 
 // icons/cancel.tsx
-import { Fragment, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
+import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
 var CancelIcon = (props) => /* @__PURE__ */ jsxs2("svg", { viewBox: `0 0 ${dimensions.width} ${dimensions.height}`, children: [
-  (!props.genre || props.genre === "normal") && /* @__PURE__ */ jsxs2(Fragment, { children: [
-    /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
-      /* @__PURE__ */ jsx2(Start, { x: 0, y: 0 }),
-      /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 100 })
-    ] }),
-    /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
-      /* @__PURE__ */ jsx2(Start, { x: 0, y: 100 }),
-      /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 0 })
-    ] })
+  /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
+    /* @__PURE__ */ jsx2(Start, { x: 0, y: 0 }),
+    /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 100 })
   ] }),
-  props.genre === "hollow" && /* @__PURE__ */ jsx2(Fragment, { children: /* @__PURE__ */ jsx2("path", { stroke: props.color || "black", fill: "none", d: "M 10 14 L 14 10 L 32 29 L 50 10 L 54 14 L 35 32 L 54 50 L 50 54 L 32 35 L 14 54 L 10 50 L 29 32 L 10 14" }) }),
-  props.genre === "thick" && /* @__PURE__ */ jsx2(Fragment, { children: /* @__PURE__ */ jsx2("path", { stroke: props.color || "black", fill: props.color || "black", d: "M 10 14 L 14 10 L 32 29 L 50 10 L 54 14 L 35 32 L 54 50 L 50 54 L 32 35 L 14 54 L 10 50 L 29 32 L 10 14" }) })
+  /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
+    /* @__PURE__ */ jsx2(Start, { x: 0, y: 100 }),
+    /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 0 })
+  ] })
 ] });
 var genCancelIcon = (config) => () => /* @__PURE__ */ jsx2(CancelIcon, { ...config });
 
@@ -169,7 +165,7 @@ function ChatBubbles(props) {
 var genChatBubblesIcon = (config) => () => /* @__PURE__ */ jsx4(ChatBubbles, { ...config });
 
 // icons/settings.tsx
-import { Fragment as Fragment2, jsx as jsx5, jsxs as jsxs5 } from "react/jsx-runtime";
+import { Fragment, jsx as jsx5, jsxs as jsxs5 } from "react/jsx-runtime";
 var innerCircleStart = rotate(50, 65, 0);
 var innerCircleTop = rotate(50, 35, 0);
 var innerCircleRadius = 15;
@@ -187,7 +183,7 @@ function SettingsIcon(props) {
     /* @__PURE__ */ jsx5(ArcTo, { ...innerCircleTop, rx: innerCircleRadius }),
     /* @__PURE__ */ jsx5(ArcTo, { ...innerCircleStart, rx: innerCircleRadius }),
     /* @__PURE__ */ jsx5(Start, { ...gears[0].start }),
-    gears.map((gear) => /* @__PURE__ */ jsxs5(Fragment2, { children: [
+    gears.map((gear) => /* @__PURE__ */ jsxs5(Fragment, { children: [
       /* @__PURE__ */ jsx5(LineTo, { ...gear.line1 }),
       /* @__PURE__ */ jsx5(LineTo, { ...gear.line2 }),
       /* @__PURE__ */ jsx5(LineTo, { ...gear.line3 }),
