@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "index.d.ts",
   "scripts": {
-    "build": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm --watch"
+    "build:watch": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm --watch",
+    "build": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,9 @@
     "esbuild": "^0.19.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/",
+    "access": "restricted"
   }
 }

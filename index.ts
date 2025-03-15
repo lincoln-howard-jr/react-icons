@@ -8,6 +8,7 @@ export {ChatBubbles} from './icons/chat'
 import { genSettingsIcon } from './icons/settings';
 export { SettingsIcon } from './icons/settings'
 import { genUserIcon } from './icons/user'
+import { genBookIcon } from './icons/book';
 export {UserIcon} from './icons/user'
 
 export const createTheme = (theme: IconProps) => ({
@@ -15,5 +16,6 @@ export const createTheme = (theme: IconProps) => ({
     pen: genPenIcon (theme),
     chat: genChatBubblesIcon (theme),
     settings: genSettingsIcon (theme),
-    user: genUserIcon (theme)
+    user: genUserIcon (theme),
+    book: genBookIcon (theme),
 })

@@ -51,8 +51,8 @@ function Path(props) {
   const addLineTo = (x, y) => {
     setPathString((pathString2) => `${pathString2} L ${scale(x)} ${scale(y)}`);
   };
-  const addArcTo = (x, y, rx, ry) => {
-    setPathString((pathString2) => `${pathString2} A ${rscale(rx)} ${rscale(ry ?? rx)} 0 0 1 ${scale(x)} ${scale(y)}`);
+  const addArcTo = (x, y, rx, ry, reverse) => {
+    setPathString((pathString2) => `${pathString2} A ${rscale(rx)} ${rscale(ry ?? rx)} 0 ${reverse ? 1 : 0} 1 ${scale(x)} ${scale(y)}`);
   };
   const close = () => {
     setPathString((pathString2) => `${pathString2} Z`);
@@ -85,7 +85,7 @@ var LineTo = function(props) {
 var ArcTo = function(props) {
   const ctx = useContext(PathContext);
   useMemo(() => {
-    ctx.addArcTo(props.x, props.y, props.rx, props.ry);
+    ctx.addArcTo(props.x, props.y, props.rx, props.ry, props.reverse);
   }, []);
   return null;
 };
@@ -99,16 +99,21 @@ var Close = function() {
 
 // icons/cancel.tsx
 import { jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var CancelIcon = (props) => /* @__PURE__ */ jsxs2("svg", { viewBox: `0 0 ${dimensions.width} ${dimensions.height}`, children: [
-  /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
-    /* @__PURE__ */ jsx2(Start, { x: 0, y: 0 }),
-    /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 100 })
-  ] }),
-  /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
-    /* @__PURE__ */ jsx2(Start, { x: 0, y: 100 }),
-    /* @__PURE__ */ jsx2(LineTo, { x: 100, y: 0 })
-  ] })
-] });
+var CancelIcon = (props) => /* @__PURE__ */ jsx2("svg", { viewBox: `0 0 ${dimensions.width} ${dimensions.height}`, children: /* @__PURE__ */ jsxs2(Path, { color: props.color, className: props.className, children: [
+  /* @__PURE__ */ jsx2(Start, { x: 12, y: 3 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 50, y: 43 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 88, y: 3 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 97, y: 12 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 57, y: 50 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 95, y: 90 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 88, y: 97 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 50, y: 57 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 12, y: 95 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 3, y: 88 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 43, y: 50 }),
+  /* @__PURE__ */ jsx2(LineTo, { x: 3, y: 12 }),
+  /* @__PURE__ */ jsx2(Close, {})
+] }) });
 var genCancelIcon = (config) => () => /* @__PURE__ */ jsx2(CancelIcon, { ...config });
 
 // icons/pen.tsx
@@ -196,28 +201,61 @@ var genSettingsIcon = (config) => () => /* @__PURE__ */ jsx5(SettingsIcon, { ...
 
 // icons/user.tsx
 import { jsx as jsx6, jsxs as jsxs6 } from "react/jsx-runtime";
-var bodyStart = rotate(25, 100, 0);
-var bodyLine1 = rotate(75, 100, 0);
-var bodyR_x = 22.5;
-var bodyR_y = 20;
-var bodyRightArc = rotate(50, 50, 0);
-var bodyLeftArc = rotate(25, 100, 0);
-var headStart = rotate(50, 45, 0);
-var headR = 21.5;
-var headArc = rotate(50, 2, 0);
 function UserIcon(props) {
   return /* @__PURE__ */ jsx6("svg", { viewBox: `0 0 ${dimensions.width} ${dimensions.height}`, children: /* @__PURE__ */ jsxs6(Path, { ...props, children: [
-    /* @__PURE__ */ jsx6(Start, { ...bodyStart }),
-    /* @__PURE__ */ jsx6(LineTo, { ...bodyLine1 }),
-    /* @__PURE__ */ jsx6(ArcTo, { ...bodyRightArc, rx: bodyR_x, ry: bodyR_y }),
-    /* @__PURE__ */ jsx6(ArcTo, { ...bodyLeftArc, rx: bodyR_x, ry: bodyR_y }),
-    /* @__PURE__ */ jsx6(Start, { ...headStart }),
-    /* @__PURE__ */ jsx6(ArcTo, { ...headArc, rx: headR }),
-    /* @__PURE__ */ jsx6(ArcTo, { ...headStart, rx: headR }),
+    /* @__PURE__ */ jsx6(Start, { x: 30, y: 30 }),
+    /* @__PURE__ */ jsx6(ArcTo, { x: 70, y: 30, rx: 20 }),
+    /* @__PURE__ */ jsx6(ArcTo, { x: 50, y: 50, rx: 20 }),
+    /* @__PURE__ */ jsx6(ArcTo, { x: 85, y: 90, rx: 40 }),
+    /* @__PURE__ */ jsx6(LineTo, { x: 15, y: 90 }),
+    /* @__PURE__ */ jsx6(ArcTo, { x: 50, y: 50, rx: 40 }),
+    /* @__PURE__ */ jsx6(ArcTo, { x: 30, y: 30, rx: 20 }),
     /* @__PURE__ */ jsx6(Close, {})
   ] }) });
 }
 var genUserIcon = (config) => () => /* @__PURE__ */ jsx6(UserIcon, { ...config });
+
+// icons/book.tsx
+import { jsx as jsx7, jsxs as jsxs7 } from "react/jsx-runtime";
+function BookIcon(props) {
+  return /* @__PURE__ */ jsxs7("svg", { viewBox: `0 0 ${dimensions.width} ${dimensions.height}`, children: [
+    /* @__PURE__ */ jsxs7(Path, { ...props, children: [
+      /* @__PURE__ */ jsx7(Start, { x: 5, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 20, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 20, y: 12.5 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 35, y: 12.5 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 35, y: 5 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 50, y: 20, rx: 15, ry: 15 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 80, y: 12.5, rx: 40, ry: 40 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 80, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 95, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 95, y: 90 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 60, y: 90 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 50, y: 94, rx: 15, ry: 15 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 40, y: 90, rx: 15, ry: 15 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 5, y: 90 }),
+      /* @__PURE__ */ jsx7(Close, {})
+    ] }),
+    /* @__PURE__ */ jsxs7(Path, { ...props, children: [
+      /* @__PURE__ */ jsx7(Start, { x: 80, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 80, y: 80 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 55, y: 80 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 45, y: 80, rx: 7.5, ry: 7.5 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 20, y: 80 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 20, y: 20 })
+    ] }),
+    /* @__PURE__ */ jsxs7(Path, { ...props, children: [
+      /* @__PURE__ */ jsx7(Start, { x: 50, y: 20 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 50, y: 80 })
+    ] }),
+    /* @__PURE__ */ jsxs7(Path, { ...props, children: [
+      /* @__PURE__ */ jsx7(Start, { x: 35, y: 12.5 }),
+      /* @__PURE__ */ jsx7(LineTo, { x: 35, y: 65 }),
+      /* @__PURE__ */ jsx7(ArcTo, { x: 50, y: 80, rx: 15, ry: 15 })
+    ] })
+  ] });
+}
+var genBookIcon = (config) => () => /* @__PURE__ */ jsx7(BookIcon, { ...config });
 
 // index.ts
 var createTheme = (theme) => ({
@@ -225,7 +263,8 @@ var createTheme = (theme) => ({
   pen: genPenIcon(theme),
   chat: genChatBubblesIcon(theme),
   settings: genSettingsIcon(theme),
-  user: genUserIcon(theme)
+  user: genUserIcon(theme),
+  book: genBookIcon(theme)
 });
 export {
   CancelIcon,
