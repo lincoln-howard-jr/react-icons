@@ -131,3 +131,4 @@ out
 dist/
 
 .DS_Store
+.npmrc
