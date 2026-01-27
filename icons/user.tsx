@@ -1,5 +1,5 @@
 import { ArcTo, Close, LineTo, Path, Start } from "../components/Path";
-import { IconProps, dimensions, rotate } from "./IconProps";
+import { IconProps, dimensions } from "./IconProps";
 
 // should be a circle for the head and a oval for the body
 export function UserIcon (props: IconProps) {

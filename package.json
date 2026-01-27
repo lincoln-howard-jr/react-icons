@@ -2,12 +2,9 @@
   "name": "@lincoln-howard-jr/react-icons",
   "version": "1.0.1",
   "description": "",
-  "main": "dist/index.js",
+  "main": "index.tsx",
   "types": "index.d.ts",
   "scripts": {
-    "postinstall": "npm run build",
-    "build:watch": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm --watch",
-    "build": "esbuild --bundle index.ts --outfile=dist/index.js --external:react --external:react-dom --format=esm"
   },
   "keywords": [],
   "author": "",

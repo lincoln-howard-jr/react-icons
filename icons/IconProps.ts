@@ -42,4 +42,6 @@ export type IconProps = {
     className?: string;
     color?: string;
     weight?: keyof typeof weights;
+    fillColor?: string;
+    fill?: boolean;
 }

@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // should be a hollow x shape
 export const CancelIcon = (props: IconProps) => (
     <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
-        <Path color={props.color} className={props.className} >
+        <Path {...props} >
             <Start x={12} y={3} />
             <LineTo x={50} y={43} />
             <LineTo x={88} y={3} />

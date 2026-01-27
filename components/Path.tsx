@@ -4,7 +4,7 @@ import { IconProps, scale, rscale, weights } from "../icons/IconProps";
 type PathCtx = {
     start: (x: number, y: number) => void;
     addLineTo: (x: number, y: number) => void;
-    addArcTo: (x: number, y: number, rx: number, ry?: number, reverse?: boolean) => void;
+    addArcTo: (x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean) => void;
     close: () => void;
 }
 
@@ -23,8 +23,9 @@ export function Path(props: { children: ReactNode | ReactNode[] } & IconProps) {
     const addLineTo = (x: number, y: number) => {
         setPathString(pathString => `${pathString} L ${scale(x)} ${scale(y)}`);
     }
-    const addArcTo = (x: number, y: number, rx: number, ry?: number, reverse?: boolean) => {
-        setPathString(pathString => `${pathString} A ${rscale(rx)} ${rscale(ry ?? rx)} 0 ${reverse ? 1 : 0} 1 ${scale(x)} ${scale(y)}`);
+    const addArcTo = (x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean) => {
+        const sweepFlag = sweep === undefined ? 1 : (sweep ? 1 : 0);
+        setPathString(pathString => `${pathString} A ${rscale(rx)} ${rscale(ry ?? rx)} ${large ? 1 : 0} ${reverse ? 1 : 0} ${sweepFlag ? 1 : 0} ${scale(x)} ${scale(y)}`);
     }
     const close = () => {
         setPathString(pathString => `${pathString} Z`);
@@ -37,7 +38,7 @@ export function Path(props: { children: ReactNode | ReactNode[] } & IconProps) {
     }
     return (
         <PathContext.Provider value={ctx}>
-            <path className={props.className} strokeWidth={weights[props.weight || 'normal']} stroke={props.color || 'black'} fill={'none'} d={pathString} />
+            <path className={props.className} strokeWidth={weights[props.weight || 'normal']} stroke={props.color || 'black'} fill={props.fill ? props.fillColor ? props.fillColor : 'black' : 'none'} d={pathString} />
             {props.children}
         </PathContext.Provider>
     )
@@ -69,10 +70,10 @@ export const LineTo = function (props: { x: number, y: number }) {
     return null;
 }
 
-export const ArcTo = function (props: { x: number, y: number, rx: number, ry?: number, reverse?: boolean }) {
+export const ArcTo = function (props: { x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean }) {
     const ctx = useContext(PathContext);
     useMemo(() => {
-        ctx.addArcTo(props.x, props.y, props.rx, props.ry, props.reverse);
+        ctx.addArcTo(props.x, props.y, props.rx, props.ry, props.reverse, props.sweep, props.large);
     }, []);
     return null;
 }
