@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Three vertical dots
 export function DotsVerticalIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Top dot */}
             <Path {...props}>
                 <Start x={42} y={20} />

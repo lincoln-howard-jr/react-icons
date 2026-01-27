@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Chevron pointing up (hollowed out)
 export function ChevronUpIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={10} y={70} />
                 <LineTo x={10} y={60} />

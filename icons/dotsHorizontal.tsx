@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Three horizontal dots (ellipsis)
 export function DotsHorizontalIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Left dot */}
             <Path {...props}>
                 <Start x={12} y={50} />

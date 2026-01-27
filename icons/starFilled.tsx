@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Filled star icon (5-pointed)
 export function StarFilledIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={50} y={5} />
                 <LineTo x={61} y={35} />

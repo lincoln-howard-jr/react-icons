@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Dashboard/grid icon with rounded rectangles
 export function DashIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Top left rectangle (tall) */}
             <Path {...props}>
                 <Start x={10} y={15} />

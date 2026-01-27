@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Stopwatch icon
 export function StopwatchIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Main circle */}
             <Path {...props}>
                 <Start x={10} y={55} />

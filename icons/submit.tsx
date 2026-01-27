@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Paper plane/submit icon
 export function SubmitIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={5} y={50} />
                 <LineTo x={20} y={5} />

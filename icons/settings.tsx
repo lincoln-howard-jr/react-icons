@@ -17,7 +17,7 @@ const gears = new Array (8).fill (Math.PI).map ((pi, i) => ({
 
 export function SettingsIcon (props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
                 <Path {...props}>
                     <Start {...innerCircleStart} />
                     <ArcTo {...innerCircleTop} rx={innerCircleRadius} />

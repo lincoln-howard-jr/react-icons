@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Trash/delete icon
 export function TrashIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Main body */}
             <Path {...props}>
                 <Start x={20} y={25} />

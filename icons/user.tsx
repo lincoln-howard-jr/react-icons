@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // should be a circle for the head and a oval for the body
 export function UserIcon (props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={30} y={30} />
                 <ArcTo x={70} y={30} rx={20} />

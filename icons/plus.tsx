@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Plus/add icon with rounded ends
 export function PlusIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Horizontal bar */}
             <Path {...props}>
                 <Start x={10} y={45} />

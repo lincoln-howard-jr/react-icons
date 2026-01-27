@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Light bulb icon with rays
 export function LightBulbIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Bulb body */}
             <Path {...props}>
                 <Start x={35} y={55} />

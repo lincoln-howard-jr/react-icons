@@ -5,7 +5,7 @@ import { IconProps, dimensions } from "./IconProps";
 // the book should be at an angle
 export function BookIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={5} y={20} />
                 <LineTo x={20} y={20} />

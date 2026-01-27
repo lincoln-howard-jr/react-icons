@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Calendar icon with rounded corners and date markers
 export function CalendarIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Main calendar body */}
             <Path {...props}>
                 <Start x={5} y={15} />

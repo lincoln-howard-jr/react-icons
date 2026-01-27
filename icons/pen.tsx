@@ -15,7 +15,7 @@ const arcR = dimensions.width / 500;
 
 export function PenIcon (props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start {...start1} />
                 <LineTo {...line1} />

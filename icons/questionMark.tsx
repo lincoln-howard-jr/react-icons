@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Question mark icon
 export function QuestionMarkIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Question mark - outer curve */}
             <Path {...props}>
                 <Start x={25} y={30} />

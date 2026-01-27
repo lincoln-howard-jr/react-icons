@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Horizontal ruler icon with measurement marks
 export function RulerIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             {/* Main ruler body */}
             <Path {...props}>
                 <Start x={5} y={35} />

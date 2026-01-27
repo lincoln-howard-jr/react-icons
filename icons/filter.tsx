@@ -4,7 +4,7 @@ import { IconProps, dimensions } from "./IconProps";
 // Funnel/filter icon
 export function FilterIcon(props: IconProps) {
     return (
-        <svg viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
+        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
             <Path {...props}>
                 <Start x={5} y={10} />
                 <LineTo x={95} y={10} />
