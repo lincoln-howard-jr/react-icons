@@ -2,13 +2,40 @@ import { createTheme, IconProps } from 'react-icons'
 import './App.css'
 import { useState } from 'react'
 
+type Icon = React.ComponentType<IconProps>;
+type IconDict = Record<string, Icon>;
+
+function RenderIconDict({ Icons, prefix }: { Icons: Record<string, Icon | IconDict>, prefix?: string }) {
+  function copyToClipboard(text: string) {
+    navigator.clipboard.writeText(`${text}`);
+  }
+  return (
+    <>
+      {
+        Object.keys(Icons).map((iconName) => {
+          const Icon = Icons[iconName];
+          if (typeof Icon === 'object') {
+            return <RenderIconDict key={iconName} Icons={Icon} prefix={`${prefix || ''}${iconName}.`} />
+          }
+          return (
+            <div key={iconName} className="icon-item" onClick={() => copyToClipboard(`${prefix || ''}${iconName}`)}>
+              <Icon className="icon-svg" />
+            </div>
+          )
+        })
+      }
+    </>
+  )
+}
+
 // should preview the icons
 function App() {
-  const [iconTheme, setTheme] = useState<IconProps>({ color: 'black', fill: false });
-  const [Icons, setIcons] = useState(createTheme({ color: 'black', fill: true }));
+  const [iconTheme, setTheme] = useState<IconProps>({ color: 'black', fill: false, animateOnHover: true });
+  const [Icons, setIcons] = useState(createTheme({ color: 'black', fill: false, animateOnHover: true }));
   return (
     <>
       <h1>Icons</h1>
+      <h2>Click on an icon to copy its name to the clipboard</h2>
       <section>
         <label htmlFor="color">Color: </label>
         <input
@@ -21,6 +48,7 @@ function App() {
             setIcons(createTheme({ ...iconTheme, color: newColor }));
           }}
         />
+        <br/>
         <label htmlFor='fillColor'>
           Fill Color:
           <input
@@ -35,6 +63,7 @@ function App() {
             style={{ marginLeft: '0.5em' }}
           />
         </label>
+        <br/>
         <label htmlFor="fill" style={{ marginLeft: '1em' }}>
           Fill:
           <input
@@ -49,116 +78,25 @@ function App() {
             style={{ marginLeft: '0.5em' }}
           />
         </label>
+        <br/>
+        <label htmlFor="animationDuration" style={{ marginLeft: '1em' }}>
+          Animation Duration:
+          <input
+            id="animationDuration"
+            type="number"
+            min="0"
+            value={Number(iconTheme.animationDuration)}
+            onChange={(e) => {
+              const newDuration = parseFloat(e.target.value);
+              setTheme((prev) => ({ ...prev, animationDuration: newDuration }));
+              setIcons(createTheme({ ...iconTheme, animationDuration: newDuration }));
+            }}
+            style={{ marginLeft: '0.5em' }}
+          />
+        </label>
       </section>
       <div id="icons-container">
-        <div>
-          <h3>Pen</h3>
-          <Icons.pen />
-        </div>
-        <div>
-          <h3>Chat</h3>
-          <Icons.chat />
-        </div>
-        <div>
-          <h3>Settings</h3>
-          <Icons.settings />
-        </div>
-        <div>
-          <h3>User</h3>
-          <Icons.user />
-        </div>
-        <div>
-          <h3>Cancel</h3>
-          <Icons.cancel />
-        </div>
-        <div>
-          <h3>Book</h3>
-          <Icons.book />
-        </div>
-        <div>
-          <h3>Calendar</h3>
-          <Icons.calendar />
-        </div>
-        <div>
-          <h3>Chevron Down</h3>
-          <Icons.chevronDown />
-        </div>
-        <div>
-          <h3>Chevron Left</h3>
-          <Icons.chevronLeft />
-        </div>
-        <div>
-          <h3>Chevron Right</h3>
-          <Icons.chevronRight />
-        </div>
-        <div>
-          <h3>Chevron Up</h3>
-          <Icons.chevronUp />
-        </div>
-        <div>
-          <h3>Dash</h3>
-          <Icons.dash />
-        </div>
-        <div>
-          <h3>Dots Horizontal</h3>
-          <Icons.dotsHorizontal />
-        </div>
-        <div>
-          <h3>Dots Vertical</h3>
-          <Icons.dotsVertical />
-        </div>
-        <div>
-          <h3>Filter</h3>
-          <Icons.filter />
-        </div>
-        <div>
-          <h3>Light Bulb</h3>
-          <Icons.lightBulb />
-        </div>
-        <div>
-          <h3>Notifications</h3>
-          <Icons.notifications />
-        </div>
-        <div>
-          <h3>Plus</h3>
-          <Icons.plus />
-        </div>
-        <div>
-          <h3>Question Mark</h3>
-          <Icons.questionMark />
-        </div>
-        <div>
-          <h3>Remove</h3>
-          <Icons.remove />
-        </div>
-        <div>
-          <h3>Ruler</h3>
-          <Icons.ruler />
-        </div>
-        <div>
-          <h3>Search</h3>
-          <Icons.search />
-        </div>
-        <div>
-          <h3>Star Filled</h3>
-          <Icons.starFilled />
-        </div>
-        <div>
-          <h3>Star</h3>
-          <Icons.star />
-        </div>
-        <div>
-          <h3>Stopwatch</h3>
-          <Icons.stopwatch />
-        </div>
-        <div>
-          <h3>Submit</h3>
-          <Icons.submit />
-        </div>
-        <div>
-          <h3>Trash</h3>
-          <Icons.trash />
-        </div>
+        <RenderIconDict Icons={Icons} />
       </div>
     </>
   )

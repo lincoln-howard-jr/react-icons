@@ -1,4 +1,4 @@
-import { ArcTo, Close, LineTo, Path, Start } from "../components/Path";
+import { ArcTo, LineTo, Path, Start } from "../components/Path";
 import { IconProps, dimensions } from "./IconProps";
 
 // Trash/delete icon

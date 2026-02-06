@@ -1,12 +1,12 @@
 export const weights = {
-    thin: 12,
-    normal: 16,
-    thick: 20
+    thin: 16,
+    normal: 24,
+    thick: 32
 }
 export const dimensions = {
-    width: 512,
-    height: 512,
-    padding: 28
+    width: 1024,
+    height: 1024,
+    padding: 64
 }
 export function scale (percentage: number) {
     return dimensions.padding + percentage * (dimensions.width - 2 * dimensions.padding) / 100;
@@ -39,9 +39,32 @@ export const rotate = (x: number, y: number, angle: number=-Math.PI / 4):Coords 
     }
 }
 export type IconProps = {
+    /**
+     * CSS class name to apply to the SVG element and all paths within it
+     */
     className?: string;
+    /**
+     * Stroke color of the icon
+     */
     color?: string;
+    /**
+     * Stroke weight of the icon: 'thin' | 'normal' | 'thick'
+     */
     weight?: keyof typeof weights;
+    /**
+     * If fill is specified, the fill color of the icon
+     */
     fillColor?: string;
+    /**
+     * Whether to fill the icon or not
+     */
     fill?: boolean;
+    /**
+     * Duration in seconds for animated icons
+     */
+    animationDuration?: number;
+    /**
+     * If true, animation plays on mouse enter instead of on load
+     */
+    animateOnHover?: boolean;
 }

@@ -4,7 +4,7 @@ import { IconProps, scale, rscale, weights } from "../icons/IconProps";
 type PathCtx = {
     start: (x: number, y: number) => void;
     addLineTo: (x: number, y: number) => void;
-    addArcTo: (x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean) => void;
+    addArcTo: (x: number, y: number, rx: number, ry?: number, xAxisRotation?: number, sweep?: boolean, large?: boolean) => void;
     close: () => void;
 }
 
@@ -23,9 +23,9 @@ export function Path(props: { children: ReactNode | ReactNode[] } & IconProps) {
     const addLineTo = (x: number, y: number) => {
         setPathString(pathString => `${pathString} L ${scale(x)} ${scale(y)}`);
     }
-    const addArcTo = (x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean) => {
+    const addArcTo = (x: number, y: number, rx: number, ry?: number, xAxisRotation?: number, sweep?: boolean, large?: boolean) => {
         const sweepFlag = sweep === undefined ? 1 : (sweep ? 1 : 0);
-        setPathString(pathString => `${pathString} A ${rscale(rx)} ${rscale(ry ?? rx)} ${large ? 1 : 0} ${reverse ? 1 : 0} ${sweepFlag ? 1 : 0} ${scale(x)} ${scale(y)}`);
+        setPathString(pathString => `${pathString} A ${rscale(rx)} ${rscale(ry ?? rx)} ${xAxisRotation ?? 0} ${large ? 1 : 0}  ${sweepFlag ? 1 : 0} ${scale(x)} ${scale(y)}`);
     }
     const close = () => {
         setPathString(pathString => `${pathString} Z`);
@@ -38,8 +38,8 @@ export function Path(props: { children: ReactNode | ReactNode[] } & IconProps) {
     }
     return (
         <PathContext.Provider value={ctx}>
-            <path className={props.className} strokeWidth={weights[props.weight || 'normal']} stroke={props.color || 'black'} fill={props.fill ? props.fillColor ? props.fillColor : 'black' : 'none'} d={pathString} />
             {props.children}
+            <path className={props.className} strokeWidth={weights[props.weight || 'normal']} stroke={props.color || 'black'} fill={props.fill ? props.fillColor ? props.fillColor : 'black' : 'none'} d={pathString} />
         </PathContext.Provider>
     )
 }
@@ -51,9 +51,9 @@ export function Path(props: { children: ReactNode | ReactNode[] } & IconProps) {
  */
 export const Start = function (props: { x: number, y: number }) {
     const ctx = useContext(PathContext);
-    useMemo(() => {
+    useMemo (() => {
         ctx.start(props.x, props.y);
-    }, []);
+    }, [props.x, props.y]);
     return null;
 }
 
@@ -64,17 +64,17 @@ export const Start = function (props: { x: number, y: number }) {
  */
 export const LineTo = function (props: { x: number, y: number }) {
     const ctx = useContext(PathContext);
-    useMemo(() => {
+    useMemo (() => {
         ctx.addLineTo(props.x, props.y);
-    }, []);
+    }, [props.x, props.y]);
     return null;
 }
 
-export const ArcTo = function (props: { x: number, y: number, rx: number, ry?: number, reverse?: boolean, sweep?: boolean, large?: boolean }) {
+export const ArcTo = function (props: { x: number, y: number, rx: number, ry?: number, xAxisRotation?: number, sweep?: boolean, large?: boolean }) {
     const ctx = useContext(PathContext);
     useMemo(() => {
-        ctx.addArcTo(props.x, props.y, props.rx, props.ry, props.reverse, props.sweep, props.large);
-    }, []);
+        ctx.addArcTo(props.x, props.y, props.rx, props.ry, props.xAxisRotation, props.sweep, props.large);
+    }, [props.x, props.y, props.rx, props.ry, props.xAxisRotation, props.sweep, props.large]);
     return null;
 }
 
