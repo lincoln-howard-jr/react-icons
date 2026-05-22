@@ -23,16 +23,16 @@ export function ContinuousPlusIcon(props: IconProps) {
             <g className={`${animationId}-plus`}>
                 <Path {...props}>
                     <Start x={10} y={45} />
-                    <ArcTo x={10} y={55} rx={5} />
+                    <LineTo x={10} y={55} />
                     <LineTo x={45} y={55} />
                     <LineTo x={45} y={90} />
-                    <ArcTo x={55} y={90} rx={5} />
+                    <LineTo x={55} y={90} />
                     <LineTo x={55} y={55} />
                     <LineTo x={90} y={55} />
-                    <ArcTo x={90} y={45} rx={5} />
+                    <LineTo x={90} y={45} />
                     <LineTo x={55} y={45} />
                     <LineTo x={55} y={10} />
-                    <ArcTo x={45} y={10} rx={5} />
+                    <LineTo x={45} y={10} />
                     <LineTo x={45} y={45} />
                     <Close />
                 </Path>

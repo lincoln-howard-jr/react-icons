@@ -12,5 +12,6 @@ export { ContinuousSearchIcon, genContinuousSearchIcon } from './search';
 export { ContinuousSettingsIcon, genContinuousSettingsIcon } from './settings';
 export { ContinuousStarIcon, genContinuousStarIcon } from './star';
 export { ContinuousStopwatchIcon, genContinuousStopwatchIcon } from './stopwatch';
+export { ContinuousSpinnerIcon, genContinuousSpinnerIcon } from './spinner';
 export { ContinuousSubmitIcon, genContinuousSubmitIcon } from './submit';
 export { ContinuousTrashIcon, genContinuousTrashIcon } from './trash';

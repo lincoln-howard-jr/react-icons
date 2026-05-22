@@ -12,7 +12,7 @@ function iconsFlat (iconObject: Record<string, typeof Icons[keyof typeof Icons]>
         if (typeof component === 'function') {
             acc.push({ name: key, component });
         } else if (typeof component === 'object' && component !== null) {
-            acc.push(...iconsFlat(component as Record<string, typeof Icons[keyof typeof Icons]>));
+            // acc.push(...iconsFlat(component as Record<string, typeof Icons[keyof typeof Icons]>));
         }
         return acc;
     }, [] as { name: string; component: () => JSX.Element }[]);

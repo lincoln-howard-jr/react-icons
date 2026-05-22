@@ -8,53 +8,90 @@ const innerCircleRadius = 15;
 const outerCircleRadius = 0;
 
 const gears = new Array(8).fill(Math.PI).map((pi, i) => ({
-    start: rotate(20, 50, (i * pi / 4) - (pi / 8)),
-    line1: rotate(10, 50, (i * pi / 4) - (pi / 8) + (pi / 40)),
-    line2: rotate(10, 50, (i * pi / 4) - (pi / 40)),
-    line3: rotate(20, 50, (i * pi / 4)),
-    end: rotate(20, 50, ((i + 1) * pi / 4) - (pi / 8))
+  start: rotate(20, 50, (i * pi) / 4 - pi / 8),
+  line1: rotate(10, 50, (i * pi) / 4 - pi / 8 + pi / 40),
+  line2: rotate(10, 50, (i * pi) / 4 - pi / 40),
+  line3: rotate(20, 50, (i * pi) / 4),
+  end: rotate(20, 50, ((i + 1) * pi) / 4 - pi / 8),
 }));
 
 // Continuously animated Settings icon - gear rotates
 export function ContinuousSettingsIcon(props: IconProps) {
-    const duration = props.animationDuration ?? 3;
-    const animationId = `settings-cont-${Math.random().toString(36).substr(2, 9)}`;
+  const duration = props.animationDuration ?? 3;
+  const animationId = `settings-cont-${Math.random().toString(36).substr(2, 9)}`;
 
-    return (
-        <svg className={props.className} viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}>
-            <style>
-                {`
-                    @keyframes ${animationId}-rotate {
-                        from { transform: rotate(0deg); }
-                        to { transform: rotate(360deg); }
-                    }
-                    .${animationId}-gear {
-                        transform-origin: 50% 50%;
-                        animation: ${animationId}-rotate ${duration}s linear infinite;
-                    }
-                `}
-            </style>
-            <g className={`${animationId}-gear`}>
-                <Path {...props}>
-                    <Start {...innerCircleStart} />
-                    <ArcTo {...innerCircleTop} rx={innerCircleRadius} />
-                    <ArcTo {...innerCircleStart} rx={innerCircleRadius} />
-                    <Start {...gears[0].start} />
-                    {
-                        gears.map((gear, i) => (
-                            <g key={i}>
-                                <LineTo {...gear.line1} />
-                                <LineTo {...gear.line2} />
-                                <LineTo {...gear.line3} />
-                                <ArcTo {...gear.end} rx={outerCircleRadius} />
-                            </g>
-                        ))
-                    }
-                    <Close />
-                </Path>
-            </g>
-        </svg>
-    )
+  return (
+    <svg
+      className={props.className}
+      viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
+    >
+      <style>
+        {`
+            @keyframes ${animationId}-rotate {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            .${animationId}-gear {
+                transform-origin: 50% 50%;
+                animation: ${animationId}-rotate ${duration}s linear infinite;
+            }
+        `}
+      </style>
+      <g className={`${animationId}-gear`}>
+        <Path {...props}>
+          <Start {...innerCircleStart} />
+          <ArcTo {...innerCircleTop} rx={innerCircleRadius} />
+          <ArcTo {...innerCircleStart} rx={innerCircleRadius} />
+          <Close />
+        </Path>
+        <Path {...props}>
+          <Start {...gears[0].start} />
+          <LineTo {...gears[0].line1} />
+          <LineTo {...gears[0].line2} />
+          <LineTo {...gears[0].line3} />
+          <LineTo {...gears[0].end} />
+          <LineTo {...gears[1].start} />
+          <LineTo {...gears[1].line1} />
+          <LineTo {...gears[1].line2} />
+          <LineTo {...gears[1].line3} />
+          <LineTo {...gears[1].end} />
+          <LineTo {...gears[2].start} />
+          <LineTo {...gears[2].line1} />
+          <LineTo {...gears[2].line2} />
+          <LineTo {...gears[2].line3} />
+          <LineTo {...gears[2].end} />
+          <LineTo {...gears[3].start} />
+          <LineTo {...gears[3].line1} />
+          <LineTo {...gears[3].line2} />
+          <LineTo {...gears[3].line3} />
+          <LineTo {...gears[3].end} />
+          <LineTo {...gears[4].start} />
+          <LineTo {...gears[4].line1} />
+          <LineTo {...gears[4].line2} />
+          <LineTo {...gears[4].line3} />
+          <LineTo {...gears[4].end} />
+          <LineTo {...gears[5].start} />
+          <LineTo {...gears[5].line1} />
+          <LineTo {...gears[5].line2} />
+          <LineTo {...gears[5].line3} />
+          <LineTo {...gears[5].end} />
+          <LineTo {...gears[6].start} />
+          <LineTo {...gears[6].line1} />
+          <LineTo {...gears[6].line2} />
+          <LineTo {...gears[6].line3} />
+          <LineTo {...gears[6].end} />
+          <LineTo {...gears[7].start} />
+          <LineTo {...gears[7].line1} />
+          <LineTo {...gears[7].line2} />
+          <LineTo {...gears[7].line3} />
+          <LineTo {...gears[7].end} />
+          <Close />
+        </Path>
+      </g>
+    </svg>
+  );
 }
 
-export const genContinuousSettingsIcon = (config: IconProps) => () => <ContinuousSettingsIcon {...config} />;
+export const genContinuousSettingsIcon = (config: IconProps) => () => (
+  <ContinuousSettingsIcon {...config} />
+);
