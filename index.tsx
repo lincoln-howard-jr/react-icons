@@ -35,6 +35,8 @@ import { genFilterIcon } from "./icons/filter";
 export { FilterIcon } from "./icons/filter";
 import { genLightBulbIcon } from "./icons/lightBulb";
 export { LightBulbIcon } from "./icons/lightBulb";
+import { genMenuIcon } from "./icons/menu";
+export { MenuIcon } from "./icons/menu";
 import { genNotificationsIcon } from "./icons/notifications";
 export { NotificationsIcon } from "./icons/notifications";
 import { genPlusIcon } from "./icons/plus";
@@ -47,6 +49,8 @@ import { genRulerIcon } from "./icons/ruler";
 export { RulerIcon } from "./icons/ruler";
 import { genSearchIcon } from "./icons/search";
 export { SearchIcon } from "./icons/search";
+import { genShrugIcon } from "./icons/shrug";
+export { ShrugIcon } from "./icons/shrug";
 import { genSpinnerIcon } from "./icons/spinner";
 export { SpinnerIcon } from "./icons/spinner";
 import { genStarIcon } from "./icons/star";
@@ -116,12 +120,14 @@ export const createTheme = (theme: IconProps) => ({
   download: genDownloadIcon(theme),
   filter: genFilterIcon(theme),
   lightBulb: genLightBulbIcon(theme),
+  menu: genMenuIcon(theme),
   notifications: genNotificationsIcon(theme),
   plus: genPlusIcon(theme),
   questionMark: genQuestionMarkIcon(theme),
   remove: genRemoveIcon(theme),
   ruler: genRulerIcon(theme),
   search: genSearchIcon(theme),
+  shrug: genShrugIcon(theme),
   spinner: genSpinnerIcon(theme),
   star: genStarIcon(theme),
   stopwatch: genStopwatchIcon(theme),
