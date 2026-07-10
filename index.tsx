@@ -31,6 +31,8 @@ import { genDotsVerticalIcon } from "./icons/dotsVertical";
 export { DotsVerticalIcon } from "./icons/dotsVertical";
 import { genDownloadIcon } from "./icons/download";
 export { DownloadIcon } from "./icons/download";
+import { genFileIcon } from "./icons/file";
+export { FileIcon } from "./icons/file";
 import { genFilterIcon } from "./icons/filter";
 export { FilterIcon } from "./icons/filter";
 import { genLightBulbIcon } from "./icons/lightBulb";
@@ -118,6 +120,7 @@ export const createTheme = (theme: IconProps) => ({
   dotsHorizontal: genDotsHorizontalIcon(theme),
   dotsVertical: genDotsVerticalIcon(theme),
   download: genDownloadIcon(theme),
+  file: genFileIcon(theme),
   filter: genFilterIcon(theme),
   lightBulb: genLightBulbIcon(theme),
   menu: genMenuIcon(theme),

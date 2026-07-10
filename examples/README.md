@@ -16,6 +16,7 @@
 | ![dotsHorizontal](./dotsHorizontal.png) | dotsHorizontal |
 | ![dotsVertical](./dotsVertical.png) | dotsVertical |
 | ![download](./download.png) | download |
+| ![file](./file.png) | file |
 | ![filter](./filter.png) | filter |
 | ![lightBulb](./lightBulb.png) | lightBulb |
 | ![menu](./menu.png) | menu |
