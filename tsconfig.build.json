@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "rootDir": ".",
+    "outDir": "dist",
+    "noEmit": false,
+    "declaration": true,
+    "types": []
+  },
+  "include": ["index.tsx", "icons/**/*.ts", "icons/**/*.tsx", "components/**/*.tsx"],
+  "exclude": ["dist", "node_modules"]
+}

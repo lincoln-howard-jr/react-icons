@@ -1,0 +1,78 @@
+name: Publish GitHub Packages
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+# Never cancel an in-progress publication or run two for the same tag.
+concurrency:
+  group: publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: >-
+      github.repository == 'lincoln-howard-jr/react-icons' &&
+      !github.event.release.draft && !github.event.release.prerelease
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+        with:
+          node-version: 24
+      - name: Validate version and release commit
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          node --input-type=commonjs -e '
+            const assert = require("node:assert/strict");
+            const pkg = require("./package.json");
+            assert.equal(pkg.name, "@lincoln-howard-jr/react-icons");
+            assert.match(pkg.version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
+            assert.equal(process.env.RELEASE_TAG, `v${pkg.version}`, "Release tag must exactly match package version");
+            assert.equal(pkg.publishConfig.registry, "https://npm.pkg.github.com/");
+            assert.equal(pkg.publishConfig.access, "restricted");
+          '
+          test "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")" = "$GITHUB_SHA"
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+
+  quality:
+    needs: validate
+    uses: ./.github/workflows/quality.yml
+    permissions:
+      contents: read
+
+  publish:
+    needs: [validate, quality]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: write
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com/
+          scope: '@lincoln-howard-jr'
+      - run: npm ci
+      - name: Pack and verify the exact artifact to publish
+        run: npm run test:package -- "$RUNNER_TEMP/package"
+      - name: Publish verified tarball
+        run: npm publish "$RUNNER_TEMP"/package/*.tgz --ignore-scripts --registry=https://npm.pkg.github.com/ --access=restricted --tag=latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

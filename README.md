@@ -4,6 +4,10 @@ A lightweight, customizable SVG icon library for React. Icons are built declarat
 
 ## Install
 
+Packages are published to **GitHub Packages**, not npmjs.org. Configure the
+`@lincoln-howard-jr` scope and authenticate before installing; see
+[registry setup and release instructions](docs/releases.md).
+
 ```bash
 npm install @lincoln-howard-jr/react-icons
 ```
@@ -250,9 +254,10 @@ All `x`/`y` values are percentages (0–100) of the padded drawing area: `64 + p
 ## Development and visual review
 
 ```bash
-npm ci
+PUPPETEER_SKIP_DOWNLOAD=true npm ci
 npm test
 npm run typecheck
+npm run test:package                    # builds, packs, checks isolated consumers
 npm run gallery                         # /tmp/react-icons-gallery/index.html
 npm run gallery -- /tmp/my-icon-review   # optional output directory
 npm --prefix preview-client ci
@@ -261,6 +266,10 @@ npm run preview
 ```
 
 Tests server-render every public icon and its theme counterpart, validate SVG path syntax, check styling and factories, and cover the Path primitives. The HTML contact sheet renders the actual static components, not separate artwork. Generated galleries and screenshots should remain outside the repository. The existing preview automatically discovers new theme keys; the legacy Bun PNG CLI also enumerates static theme keys, but skips nested animation groups and launches one browser per icon. Prefer the single HTML gallery for bulk review.
+
+The preview now consumes compiled `dist/`; run `npm run build` after library changes.
+See [quality checks, package compatibility and releases](docs/releases.md) for CI
+permissions, supported Node versions and the release procedure.
 
 Factories bind their configuration once; returned theme components take no override props. Style an icon directly or rebuild the theme to change its configuration. These are outline-first glyphs: `fill` is forwarded to every path, not a separately designed solid variant, so filling multi-part icons can obscure internal detail. Provide accessible text on the surrounding control (for example, a labeled button); icons do not generate accessible names themselves.
 

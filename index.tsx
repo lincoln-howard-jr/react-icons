@@ -1,4 +1,5 @@
 import { IconProps } from "./icons/IconProps";
+export type { IconProps } from "./icons/IconProps";
 import { genCancelIcon } from "./icons/cancel";
 export { CancelIcon } from "./icons/cancel";
 import { genPenIcon } from "./icons/pen";
