@@ -1,4 +1,4 @@
-import { ArcTo, Close, LineTo, Path, Start } from "../components/Path";
+import { Close, LineTo, Path, Start } from "../components/Path";
 import { IconProps, dimensions } from "./IconProps";
 
 // Plus/add icon with rounded ends

@@ -1,4 +1,4 @@
-import { ArcTo, LineTo, Path, Start } from "../components/Path";
+import { ArcTo, Path, Start } from "../components/Path";
 import { IconProps, dimensions } from "./IconProps";
 
 // Spinner icon - a circle with a gap to indicate loading

@@ -5,7 +5,6 @@ const innerCircleStart = rotate(50, 65, 0);
 const innerCircleTop = rotate(50, 35, 0);
 const innerCircleRadius = 15;
 
-const outerCircleRadius = 0;
 
 const gears = new Array(8).fill(Math.PI).map((pi, i) => ({
   start: rotate(20, 50, (i * pi) / 4 - pi / 8),
