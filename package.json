@@ -2,9 +2,30 @@
   "name": "@lincoln-howard-jr/react-icons",
   "version": "2.3.1",
   "description": "",
-  "main": "index.tsx",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./components/*": { "types": "./dist/components/*.d.ts", "default": "./dist/components/*.js" },
+    "./icons/animated": { "types": "./dist/icons/animated/index.d.ts", "default": "./dist/icons/animated/index.js" },
+    "./icons/animated/continuous": { "types": "./dist/icons/animated/continuous/index.d.ts", "default": "./dist/icons/animated/continuous/index.js" },
+    "./icons/*": { "types": "./dist/icons/*.d.ts", "default": "./dist/icons/*.js" },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "components/*": ["dist/components/*"],
+      "icons/*": ["dist/icons/*"]
+    }
+  },
   "scripts": {
+    "test": "tsx --test tests/*.test.tsx",
+    "typecheck": "tsc --noEmit",
+    "build": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "test:package": "node scripts/package-smoke.mjs",
+    "gallery": "tsx scripts/gallery.tsx",
     "generate-png": "bun run cli/generatePng.tsx",
     "preview": "cd preview-client && npm run dev"
   },
@@ -13,10 +34,15 @@
   "license": "ISC",
   "devDependencies": {
     "@tsconfig/create-react-app": "^2.0.1",
+    "@types/node": "^26.6.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/svg-path-parser": "^1.1.6",
     "bun": "^1.3.9",
-    "puppeteer": "^24.37.5"
+    "puppeteer": "^24.37.5",
+    "svg-path-parser": "^1.1.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "react": "^19.2.3",
