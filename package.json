@@ -26,7 +26,8 @@
     "prepack": "npm run build",
     "test:package": "node scripts/package-smoke.mjs",
     "gallery": "tsx scripts/gallery.tsx",
-    "generate-png": "bun run cli/generatePng.tsx",
+    "generate-png": "tsx cli/generatePng.tsx",
+    "test:examples": "tsx scripts/check-examples.tsx",
     "preview": "cd preview-client && npm run dev"
   },
   "keywords": [],

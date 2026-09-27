@@ -15,7 +15,7 @@ Counts exclude factories, `createTheme`, types and Path primitives. Each static 
 
 The original 32 static theme keys were: `book`, `calendar`, `cancel`, `chat`, `chevronDown`, `chevronLeft`, `chevronRight`, `chevronUp`, `copy`, `dash`, `dotsHorizontal`, `dotsVertical`, `download`, `file`, `filter`, `lightBulb`, `menu`, `notifications`, `pen`, `plus`, `questionMark`, `remove`, `ruler`, `search`, `settings`, `shrug`, `spinner`, `star`, `stopwatch`, `submit`, `trash`, `user`.
 
-The old README listed only 26 of them and incorrectly described `DashIcon` as a horizontal dash. The glyph is a dashboard panel grid; `RemoveIcon` already supplies the minus sign. The updated catalog lists all 92 static components and their exact theme keys, preserving the historical `ChatBubbles` component name.
+The old README listed only 26 of them and incorrectly described `DashIcon` as a horizontal dash. The glyph is a dashboard panel grid; `RemoveIcon` already supplies the minus sign. The [static reference](icons.md) lists all 92 static components and their exact theme keys, preserving the historical `ChatBubbles` component name.
 
 ## Added baseline
 
@@ -52,7 +52,7 @@ All 60 additions are **static only**. Play-once coverage remains: cancel, chat, 
 
 ## Integration and verification
 
-`index.tsx` explicitly exports each new static component and registers its factory in `createTheme`. The preview recursively enumerates theme entries and therefore discovers the additions without a second hand-maintained catalog. The legacy `cli/generatePng.tsx` discovers static entries too, but intentionally does not recurse into animation groups, uses Bun-specific server rendering and launches one Chromium process per icon. It was not used for bulk output in this change.
+`index.tsx` explicitly exports each new static component and registers its factory in `createTheme`. The preview recursively enumerates theme entries and therefore discovers the additions without a second hand-maintained catalog. `npm run generate-png` discovers static entries, intentionally excludes animation groups, and reuses one Chromium browser to generate the [PNG examples](../examples/README.md). See [generation setup](development.md#generate-icon-examples).
 
 The Node-based test command uses `tsx` and React server rendering. The initial HomeIcon contract test failed for the missing export, then passed after implementation; expanding the same established contract to the remaining baseline produced 59 missing-export failures before those modules were added. A subsequent visual review caught the refresh arc; a failing geometry regression preceded its correction.
 
@@ -75,4 +75,4 @@ chromium --headless --no-sandbox --disable-gpu \
   --window-size=1280,1700 file:///tmp/react-icons-gallery/index.html
 ```
 
-Use `--no-sandbox` only in a trusted isolated environment when necessary; omit it on normally sandboxed desktops. Gallery HTML, screenshots and build output are review artifacts, not tracked library assets. Animation playback is not visually validated by a static contact sheet. The tests validate SSR output, not hydration behavior or animation timing.
+Use `--no-sandbox` only in a trusted isolated environment when necessary; omit it on normally sandboxed desktops. Temporary gallery HTML, review screenshots and build output remain untracked. The PNGs and generated catalog in `examples/` are tracked documentation assets. Animation playback is not visually validated by a static contact sheet. The tests validate SSR output, not hydration behavior or animation timing.
